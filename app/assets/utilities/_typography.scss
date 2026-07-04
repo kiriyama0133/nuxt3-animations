@@ -1,0 +1,19 @@
+.heading-tertiary {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.btn-text {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  transition: all .5s;
+  &:hover {
+    text-decoration: none;
+  }
+}
+.paragraph {
+  font-size: 1.1rem;
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}
