@@ -38,7 +38,6 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const router = useRouter()
 const animationName = computed(() => route.params.name as string)
 const component = defineAsyncComponent({
   loader: () => import(`~/components/animations/${animationName.value}.vue`),
