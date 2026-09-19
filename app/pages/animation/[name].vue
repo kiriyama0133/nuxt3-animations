@@ -49,6 +49,7 @@ const component = defineAsyncComponent({
 const componentKey = ref(0)
 const animationModules = import.meta.glob('~/components/animations/*.vue')
 const availableAnimations = computed(() => {
+  console.log('animationModules:', animationModules)
   return Object.keys(animationModules).map((path) => {
     const fileName = path.split('/').pop() || ''
     return fileName.replace('.vue', '')

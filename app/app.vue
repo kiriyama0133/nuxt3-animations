@@ -10,7 +10,14 @@ useHead({
     lang: 'en'
   }
 })
-
+const animationModules = import.meta.glob('~/components/animations/*.vue')
+const availableAnimations = computed(() => {
+  console.log('animationModules:', animationModules)
+  return Object.keys(animationModules).map((path) => {
+    const fileName = path.split('/').pop() || ''
+    return fileName.replace('.vue', '')
+  })
+})
 const title = 'Nuxt Starter Template'
 const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
 
@@ -31,21 +38,25 @@ useSeoMeta({
         <NuxtLink to="/">
           <AppLogo class="w-auto h-6 shrink-0" />
         </NuxtLink>
-
-        <TemplateMenu />
+      <UDropdownMenu
+        :items="availableAnimations.map(item => ({
+          label: item,
+          to: `/animation/${item}`
+        }))"
+      >
+        <UButton
+          label="Select Animation"
+          variant="subtle"
+          trailing-icon="i-lucide-chevron-down"
+          size="xs"
+          class="-mb-1.5 font-semibold rounded-full truncate"
+        />
+      </UDropdownMenu>
       </template>
 
       <template #right>
         <UColorModeButton />
-
-        <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
-          color="neutral"
-          variant="ghost"
-        />
+        
       </template>
     </UHeader>
 
